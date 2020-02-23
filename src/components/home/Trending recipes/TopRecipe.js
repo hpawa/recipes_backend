@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import RatingStars from '../../Widgets/Recipes/RatingStars'
+import MetaRecipe from '../../Widgets/Recipes/MetaRecipe'
 
 export class TopRecipe extends Component {
   render() {
@@ -19,11 +20,7 @@ export class TopRecipe extends Component {
             <p>More off this less hello salamander lied porpoise much over tightly circa
                 horse taped so innocuously side crud mightily rigorous plot life. New homes
                 in particular are subject.</p>
-            <ul class="entry-meta">
-                <li><a href="#"><i class="fas fa-clock"></i>15 Mins</a></li>
-                <li><a href="#"><i class="fas fa-user"></i>by <span>John Martin</span></a></li>
-                <li><a href="#"><i class="fas fa-heart"></i><span>02</span> Likes</a></li>
-            </ul>
+            <MetaRecipe owner="John" mins="27" likes="21"/>
           </div>
         </div>
       </div>
