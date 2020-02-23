@@ -42,20 +42,14 @@ export class TrendingRecipesBox extends Component {
     const listRecipes = dummyData.map(recipe => <Recipe info={{...recipe}}/>);
 
     return (
-      <section class="padding-bottom-45">
-        <div class="container">
-          <div class="row gutters-60">
-            <div class="col-lg-8">
-              <div class="section-heading heading-dark">
-                <h2 class="item-heading">TRENDING RECIPES</h2>
-              </div>
-              <div class="row">
-                {listRecipes}
-              </div>
-            </div>
-          </div>
+      <div class="col-lg-8">
+        <div class="section-heading heading-dark">
+          <h2 class="item-heading">TRENDING RECIPES</h2>
         </div>
-      </section>
+        <div class="row">
+          {listRecipes}
+        </div>
+      </div>
     )
   }
 }

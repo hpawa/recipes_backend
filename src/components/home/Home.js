@@ -1,11 +1,11 @@
 import React, { Component } from 'react'
-import TrendingRecipesBox from './Trending recipes/TrendingRecipesBox'
+import FirstBlock from './FirstBlock/FirstBlock'
 
 export class Home extends Component {
   render() {
     return (
       <div>
-        <TrendingRecipesBox/>
+        <FirstBlock/>
       </div>
     )
   }
