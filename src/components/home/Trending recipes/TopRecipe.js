@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import RatingStars from '../../Widgets/Recipes/RatingStars'
 
 export class TopRecipe extends Component {
   render() {
@@ -14,14 +15,7 @@ export class TopRecipe extends Component {
             <span class="sub-title">PASTA</span>
             <h2 class="item-title"><a href="single-recipe1.html">Chanterelle and Porcini
                     Mushroom Recipes</a></h2>
-            <ul class="item-rating">
-                <li class="star-fill"><i class="fas fa-star"></i></li>
-                <li class="star-fill"><i class="fas fa-star"></i></li>
-                <li class="star-fill"><i class="fas fa-star"></i></li>
-                <li class="star-fill"><i class="fas fa-star"></i></li>
-                <li class="star-empty"><i class="fas fa-star"></i></li>
-                <li><span>9<span> / 10</span></span> </li>
-            </ul>
+            <RatingStars score="1"/>
             <p>More off this less hello salamander lied porpoise much over tightly circa
                 horse taped so innocuously side crud mightily rigorous plot life. New homes
                 in particular are subject.</p>
