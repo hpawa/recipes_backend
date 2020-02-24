@@ -13,6 +13,7 @@ import Footer from './Layout/footer/Footer';
 import Home from './home/Home';
 import Category from './category/Category';
 import Recipes from './Recipes/Recipes';
+import Scrollup from './Widgets/Scrollup';
 
 const store = createStore(rootReducer, composeWithDevTools(applyMiddleware(thunk)));
 
@@ -21,6 +22,7 @@ export class App extends Component {
     return (
       <Provider store={store}>
         <HashRouter>
+          <Scrollup/>
           <Header/>
           <SubHeader/>
           <Switch>
