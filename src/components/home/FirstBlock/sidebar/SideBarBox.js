@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import SubscribeBox from './SubscribeBox'
 import LatestRecipesBox from './LatestRecipesBox'
+import ListCategories from './ListCategories'
 
 export class SideBarBox extends Component {
   render() {
@@ -8,6 +9,7 @@ export class SideBarBox extends Component {
       <div class="col-lg-4 sidebar-widget-area sidebar-break-md">
         <SubscribeBox/>
         <LatestRecipesBox/>
+        <ListCategories/>
       </div>
     )
   }
