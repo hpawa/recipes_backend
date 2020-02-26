@@ -15,6 +15,7 @@ import Category from './category/Category';
 import Recipes from './Recipes/Recipes';
 import Scrollup from './Widgets/Scrollup';
 import { notFound404 } from './Errors/notFound404';
+import RecipeDetails from './recipeDetails/RecipeDetails';
 
 const store = createStore(rootReducer, composeWithDevTools(applyMiddleware(thunk)));
 
@@ -30,6 +31,7 @@ export class App extends Component {
             <Route exact path='/' component={Home}/>
             <Route exact path='/categories' component={Category}/>
             <Route exact path='/recipes' component={Recipes}/>
+            <Route exact path='/recipe-detail' component={RecipeDetails}/>
             <Route path='*' component={notFound404}/>
           </Switch>
           <Footer/>
