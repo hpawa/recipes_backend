@@ -27,6 +27,28 @@ let dummyData = {
     "bolshe",
     "nichego"
   ],
+  "nutritions": [
+    {
+      "name": "Calories",
+      "value": 242
+    },
+    {
+      "name": "Protein",
+      "value": 22
+    },
+    {
+      "name": "Fat",
+      "value": 2
+    },
+    {
+      "name": "Carbs",
+      "value": 42
+    },
+    {
+      "name": "Sugar",
+      "value": 1
+    },
+  ],
   "cookSteps": [
     {
       'number': 1,
