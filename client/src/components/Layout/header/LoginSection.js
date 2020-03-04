@@ -2,6 +2,19 @@ import React, { Component } from 'react';
 import {Link} from 'react-router-dom';
 
 export class LoginSection extends Component {
+  constructor(props) {
+    super(props);
+
+    this.ref = React.createRef();
+    this.setActive = this.setActive.bind(this);
+  }
+
+  setActive() {
+    console.log(this.ref)
+    this.ref.current.className += ' active';
+  }
+
+
   render() {
     return (
       <div className="col-lg-4 col-md-9 col-sm-8 col-8 d-flex align-items-center justify-content-end">
@@ -17,7 +30,7 @@ export class LoginSection extends Component {
             </li>
           </ul>
         </div>
-        <div className="mob-menu-open toggle-menu">
+        <div className="mob-menu-open toggle-menu" ref={this.ref} onClick={this.setActive}>
           <span className="bar"></span>
           <span className="bar"></span>
           <span className="bar"></span>
