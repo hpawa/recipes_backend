@@ -27,6 +27,11 @@
   z-index: 5;
 }
 
+.header-container {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
 .header-body {
   position: relative;
   display: flex;
@@ -35,9 +40,7 @@
   width: 100%;
   margin: 0 auto;
   align-items: center;
-  padding: 0 40px;
 }
-
 
 .menu-list {
   display: flex;
@@ -110,6 +113,10 @@
   transition: all 0.3s;
 }
 
+.submit-recipe-button button:focus {
+  outline: none;
+}
+
 .submit-recipe-button button i {
   margin-right: 5px;
   font-weight: 600;
@@ -179,10 +186,6 @@
 
   .header-burger.active span {
     transform: scale(0);
-  }
-
-  .header-body {
-    padding: 0;
   }
 
   .header-menu {
