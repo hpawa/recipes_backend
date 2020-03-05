@@ -1,18 +1,18 @@
 import React, { Component } from 'react';
 import {Link} from 'react-router-dom';
 
-export class NavButtonLayer extends Component {
+export class Menu extends Component {
   render() {
     return (
-      <nav className="site-nav">
-        <ul id="site-menu" className="site-menu">
+      <div className="header-menu">
+        <ul className="menu-list">
           <li><Link to="/">Home</Link></li>
           <li><Link to="/categories">Category</Link></li>
           <li><Link to="/recipes">Recipes</Link></li>
         </ul>
-      </nav>
+      </div>
     )
   }
 }
 
-export default NavButtonLayer
+export default Menu
