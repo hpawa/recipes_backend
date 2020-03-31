@@ -1,0 +1,96 @@
+body {
+	font-size: 16px;
+	font-family: 'Hind', sans-serif;
+	font-weight: 400;
+	height: 100%;
+	line-height: 1.6;
+	vertical-align: baseline;
+	-webkit-font-smoothing: antialiased;
+	-moz-osx-font-smoothing: grayscale;
+	text-rendering: optimizeLegibility;
+	color: #646464;
+}
+
+h1, h2, h3, h4, h5, h6 {
+	font-weight: 400;
+	font-family: 'Lora', serif;
+	margin: 0 0 20px 0;
+	color: #111111;
+}
+
+h3 {
+	font-size: 22px;
+}
+
+a:active, a:hover, a:focus {
+	text-decoration: none;
+}
+
+a:active, a:hover, a:focus {
+	outline: 0 none;
+}
+
+ul {
+	list-style: outside none none;
+	margin: 0;
+	padding: 0;
+}
+
+.container {
+  max-width: 1170px;
+  margin: 0 auto;
+  padding: 10px;
+}
+
+.section-heading {
+	margin-bottom: 30px;
+	padding-bottom: 25px;
+	position: relative;
+	border-bottom: 1px solid #d7d7d7;
+}
+
+.section-heading:before {
+	position: absolute;
+	content: "";
+	bottom: -2px;
+	left: 0;
+	background-color: #ff4a52;
+	height: 3px;
+	width: 50px;
+}
+
+.section-heading .item-heading {
+	margin-bottom: 0;
+	font-family: 'Hind', sans-serif;
+	font-size: 24px;
+	font-weight: 600;
+}
+
+@media only screen and (max-width: 767px) {
+	.section-heading .item-heading {
+		font-size: 18px;
+	}
+}
+
+.section-heading .item-heading-big {
+	font-weight: 700;
+	margin-bottom: 0;
+	font-size: 24px;
+}
+
+@media only screen and (max-width: 991px) {
+	.section-heading .item-heading-big {
+		font-size: 22px;
+	}
+}
+
+@media only screen and (max-width: 575px) {
+	.section-heading .item-heading-big {
+		font-size: 20px;
+	}
+}
+
+.widget .section-heading .item-heading {
+	font-size: 20px;
+	font-weight: 500;
+}
