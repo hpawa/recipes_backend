@@ -19,7 +19,7 @@ class Step(models.Model):
 class Recipe(models.Model):
     owner = models.ForeignKey(User, on_delete=models.PROTECT)
     title = models.CharField(max_length=200)
-    slug = models.SlugField(max_length=200, unique=True)
+    slug = models.SlugField(max_length=200, unique=True, blank=True)
     categories = models.ManyToManyField(Category)
     description = models.TextField()
     ingridients = models.ManyToManyField(Ingridient)
@@ -27,7 +27,7 @@ class Recipe(models.Model):
     steps = models.ForeignKey(Step, on_delete=models.PROTECT)
     prep_time = models.PositiveSmallIntegerField()
     cook_time = models.PositiveSmallIntegerField()
-    grades = models.ForeignKey(Grade, on_delete=models.PROTECT, blank=True)
+    grades = models.ForeignKey(Grade, on_delete=models.PROTECT, blank=True, null=True)
     views = models.PositiveIntegerField(default=0)
     dtcreate = models.DateTimeField(auto_now_add=True)
     dtupdate = models.DateTimeField(auto_now=True)

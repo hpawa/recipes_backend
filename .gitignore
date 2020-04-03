@@ -155,4 +155,4 @@ dmypy.json
 *.code-workspace
 .vscode/
 
-migrations/
+**/migrations/*
