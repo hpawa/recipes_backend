@@ -14,7 +14,7 @@ const LatestRecipesItem = ({num, recipe:{id, title, image, category, owner}}) =>
     <Fragment>
       <div className="item-img">
         <a href="#"><img src={image} alt="Post"/></a>
-        <div className="count-number">{num}</div>
+        <div className="count-number">{num + 1}</div>
       </div>
       <div className="item-content">
         <div className="item-ctg">{category}</div>

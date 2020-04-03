@@ -5,6 +5,8 @@ import Header from '../layout/header';
 import Footer from '../layout/footer';
 import HomePage from './../pages/HomePage';
 
+import DetailPage from '../pages/DetailPage/DetailPage';
+
 import './App.css';
 
 const App = () => {
@@ -13,6 +15,7 @@ const App = () => {
       <Header/>
       <Switch>
         <Route exact path='/' component={HomePage}/>
+        <Route exact path="/details/:id" component={DetailPage}/>
       </Switch>
       <Footer/>
     </div>

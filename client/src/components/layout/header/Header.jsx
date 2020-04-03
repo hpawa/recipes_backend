@@ -29,7 +29,7 @@ const Header = () => {
             </div>
             <div className="col-lg-4 col-12 d-flex align-items-center justify-content-between">
                 <div className="site-logo-mobile">
-                  <a href="index.html" className="sticky-logo-light"><img src="assets/logo-light.png" alt="Site Logo"/></a>
+                  <a href="index.html" className="sticky-logo-light"><img src="/assets/logo-light.png" alt="Site Logo"/></a>
                 </div>
                 <div className="d-flex  align-items-center ">
                   <div className="nav-action-elements-layout1">

@@ -1,3 +1,42 @@
-.entry-meta {
+.entry-meta li {
+	display: inline-block;
+	margin-right: 10px;
+  margin-bottom: 5px;
   font-size: 15px;
+}
+
+.entry-meta li:last-child {
+	margin-right: 0;
+}
+
+.entry-meta li a {
+	color: #909090;
+	-webkit-transition: all 0.3s ease-out;
+	-moz-transition: all 0.3s ease-out;
+	-ms-transition: all 0.3s ease-out;
+	-o-transition: all 0.3s ease-out;
+	transition: all 0.3s ease-out;
+}
+
+.entry-meta li a span {
+	color: #111111;
+	-webkit-transition: all 0.3s ease-out;
+	-moz-transition: all 0.3s ease-out;
+	-ms-transition: all 0.3s ease-out;
+	-o-transition: all 0.3s ease-out;
+	transition: all 0.3s ease-out;
+}
+
+.entry-meta li a i {
+	margin-right: 10px;
+	color: #ff4a52;
+	font-size: 14px;
+}
+
+.entry-meta li a:hover {
+	color: #ff4a52;
+}
+
+.entry-meta li a:hover span {
+	color: #ff4a52;
 }

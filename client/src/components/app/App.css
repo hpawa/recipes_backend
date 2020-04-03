@@ -88,3 +88,27 @@ img {
 		font-size: 20px;
 	}
 }
+
+.section-heading2 .item-heading {
+	font-weight: 700;
+	margin-bottom: 0;
+	font-size: 30px;
+}
+
+@media only screen and (max-width: 991px) {
+	.section-heading2 .item-heading {
+		font-size: 28px;
+	}
+}
+
+@media only screen and (max-width: 767px) {
+	.section-heading2 .item-heading {
+		font-size: 26px;
+	}
+}
+
+@media only screen and (max-width: 575px) {
+	.section-heading2 .item-heading {
+		font-size: 24px;
+	}
+}

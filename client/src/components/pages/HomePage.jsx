@@ -14,7 +14,7 @@ const HomePageContainer = () => {
       <SliderHomePage/>
       <div className="row gutters-60">
         <TrendingRecipes/>
-        <Sidebar>
+        <Sidebar style={{marginTop:100}}>
           <FollowUs/>
           <TopCategories/>
           <LatestRecipes/>
