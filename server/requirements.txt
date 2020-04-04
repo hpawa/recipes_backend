@@ -2,3 +2,4 @@ django
 djangorestframework
 pytils
 pillow
+drf-yasg
