@@ -156,3 +156,4 @@ dmypy.json
 .vscode/
 
 **/migrations/*
+**/static/*

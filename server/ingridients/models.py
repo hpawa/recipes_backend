@@ -5,12 +5,14 @@ from pytils.translit import slugify
 class Ingridient(models.Model):
     title = models.CharField(max_length=100)
     description = models.TextField()
-    image = models.ImageField(upload_to='ingridients', blank=True)
+    poster = models.ImageField(upload_to='ingridients/static/img/posters', blank=True)
     slug = models.SlugField(max_length=200, unique=True, blank=True)
     prots = models.PositiveSmallIntegerField()
     fats = models.PositiveSmallIntegerField()
     carbs = models.PositiveSmallIntegerField()
-    callories = models.PositiveIntegerField()
+    calories = models.PositiveIntegerField()
+    base_weight = models.PositiveIntegerField(null=True, blank=True)
+    base_unit = models.TextField(max_length=20, blank=True, null=True)
     dtcreate = models.DateTimeField(auto_now_add=True)
     dtupdate = models.DateTimeField(auto_now=True)
 

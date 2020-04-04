@@ -3,18 +3,8 @@ from django.contrib.auth.models import User
 from categories.models import Category
 from ingridients.models import Ingridient
 from pytils.translit import slugify
+from django.core.validators import MaxValueValidator
 
-
-class Grade(models.Model):
-    owner = models.ForeignKey(User, on_delete=models.PROTECT, blank=True)
-    description = models.TextField(blank=True)
-    image = models.ImageField(upload_to='recipes_grades')
-    value = models.PositiveSmallIntegerField()
-
-class Step(models.Model):
-    title = models.CharField(max_length=200)
-    image = models.ImageField(upload_to='recipes_steps')
-    description = models.TextField(blank=True)
 
 class Recipe(models.Model):
     owner = models.ForeignKey(User, on_delete=models.PROTECT)
@@ -23,14 +13,15 @@ class Recipe(models.Model):
     categories = models.ManyToManyField(Category)
     description = models.TextField()
     ingridients = models.ManyToManyField(Ingridient)
-    poster = models.ImageField(upload_to='recipes_posters')    
-    steps = models.ForeignKey(Step, on_delete=models.PROTECT)
+    poster = models.ImageField(upload_to='recipes/static/img/posters')
     prep_time = models.PositiveSmallIntegerField()
     cook_time = models.PositiveSmallIntegerField()
-    grades = models.ForeignKey(Grade, on_delete=models.PROTECT, blank=True, null=True)
     views = models.PositiveIntegerField(default=0)
     dtcreate = models.DateTimeField(auto_now_add=True)
     dtupdate = models.DateTimeField(auto_now=True)
+
+    class Meta:
+        ordering = ['-dtcreate']
 
     def save(self, *args, **kwargs):
         if not self.slug:
@@ -39,3 +30,18 @@ class Recipe(models.Model):
 
     def __str__(self):
         return self.title
+
+
+class Step(models.Model):
+    title = models.CharField(max_length=200)
+    image = models.ImageField(upload_to='recipes/static/img/steps')
+    description = models.TextField(blank=True)
+    recipe = models.ForeignKey(Recipe, on_delete=models.CASCADE, related_name='steps')
+
+
+class Grade(models.Model):
+    owner = models.ForeignKey(User, on_delete=models.PROTECT, blank=True, null=True)
+    description = models.TextField(blank=True, null=True)
+    image = models.ImageField(upload_to='recipes/static/img/grades', blank=True, null=True)
+    value = models.PositiveSmallIntegerField(validators=[MaxValueValidator(10)])
+    recipe = models.ForeignKey(Recipe, on_delete=models.CASCADE, related_name='grades')
