@@ -14,3 +14,8 @@ class RecipesView(generics.ListAPIView):
     queryset = Recipe.objects.all()
     serializer_class = RecipeSerializer
     pagination_class = ResultsSetPagination
+
+
+class SingleRecipeView(generics.RetrieveUpdateDestroyAPIView):
+    queryset = Recipe.objects.all()
+    serializer_class = RecipeSerializer
