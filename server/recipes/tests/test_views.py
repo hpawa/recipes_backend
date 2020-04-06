@@ -4,6 +4,8 @@ from ..models import Recipe, Category, Ingridient, Step
 from django.contrib.auth.models import User
 from ..serializers import RecipeSerializer
 from rest_framework import status
+from model_bakery import baker
+import random
 
 
 client = Client()
@@ -11,19 +13,10 @@ client = Client()
 
 class RecipesList(TestCase):
     def setUp(self):
-        self.Ivan = User.objects.create_user(username='Ivan', password='qwerty')
-        Category.objects.create(title='у Павлика', poster='poster_url')
-        Category.objects.create(title='Гурбау', poster='poster_url')
-        Ingridient.objects.create(title='Фарш', description='сырой', prots=1000, fats=2, carbs=30, calories=124)
-        Ingridient.objects.create(title='Кукуруза', description='желтая', prots=1, fats=4, carbs=60, calories=42)
-        Ingridient.objects.create(title='Фасоль', description='красная', prots=3, fats=25, carbs=22, calories=53)
-        ingridients = Ingridient.objects.all()
-        categories = Category.objects.all()
-        steps = Step.objects.all()
-        recipe = Recipe.objects.create(owner=self.Ivan, title='жабаговно', description='ахуенный хафчик',
-                              poster='poster_url', prep_time=40, cook_time=20)
-        Step.objects.create(title='берем укропу', image='step_poster', description='ыыы', recipe=recipe)
-        Step.objects.create(title='потом кошачью жопу', image='step_poster', description='йцукен', recipe=recipe)
+        self.recipes = baker.make('Recipe', _quantity=10, make_m2m=True)
+        for recipe in self.recipes:
+            steps = baker.make('Step', recipe=recipe)
+        self.Ivan = baker.make('User')
 
     def test_get_recipes_list(self):
         response = client.get(reverse('recipes:recipes_list'))
@@ -35,19 +28,44 @@ class RecipesList(TestCase):
 
 class SingleRecipe(TestCase):
     def setUp(self):
-        pass
+        self.recipes = baker.make('Recipe', _quantity=10, make_m2m=True)
+        for recipe in self.recipes:
+            steps = baker.make('Step', recipe=recipe)
+        self.Ivan = baker.make('User')
 
     def test_create_single_recipe(self):
         pass
 
     def test_get_single_recipe(self):
-        pass
+        recipe_pk = random.choice(self.recipes).pk
+        response = client.get(reverse('recipes:single_recipe', kwargs={'pk': recipe_pk}))
+        recipe = Recipe.objects.get(pk=recipe_pk)
+        serializer = RecipeSerializer(recipe)
+        self.assertEqual(response.status_code, status.HTTP_200_OK)
+        self.assertEqual(response.data, serializer.data)
 
     def test_update_single_recipe(self):
-        pass
+        recipe = random.choice(self.recipes)
+        instance = baker.prepare('Recipe')
+        payload = {
+            'description': instance.description,
+            'cook_time': instance.cook_time,
+            'prep_time': instance.prep_time,
+            'views': random.randrange(1, 999999)
+        }
+        response = client.put(reverse('recipes:single_recipe', kwargs={
+                              'pk': recipe.pk}), data=payload, content_type='application/json')
+        self.assertEqual(response.status_code, status.HTTP_200_OK)
+        for param in payload:
+            self.assertNotEqual(getattr(recipe, param), response.data[param])
 
     def test_delete_single_recipe(self):
-        pass
+        recipe_pk = random.choice(self.recipes).pk
+        response = client.delete(reverse('recipes:single_recipe', kwargs={'pk': recipe_pk}))
+        self.assertEqual(response.status_code, status.HTTP_204_NO_CONTENT)
+        self.assertEqual(len(Recipe.objects.filter(pk=recipe_pk)), 0)
 
     def test_get_nonex_single_recipe(self):
-        pass
+        recipe_pk = random.randrange(len(self.recipes), 999999)
+        response = client.get(reverse('recipes:single_recipe', kwargs={'pk': recipe_pk}))
+        self.assertEqual(response.status_code, status.HTTP_404_NOT_FOUND)
