@@ -19,6 +19,7 @@ class Recipe(models.Model):
     views = models.PositiveIntegerField(default=0)
     dtcreate = models.DateTimeField(auto_now_add=True)
     dtupdate = models.DateTimeField(auto_now=True)
+    published = models.BooleanField(default=True)
 
     class Meta:
         ordering = ['-dtcreate']
@@ -45,3 +46,4 @@ class Grade(models.Model):
     image = models.ImageField(upload_to='recipes/static/img/grades', blank=True, null=True)
     value = models.PositiveSmallIntegerField(validators=[MaxValueValidator(10)])
     recipe = models.ForeignKey(Recipe, on_delete=models.CASCADE, related_name='grades')
+    dtcreate = models.DateTimeField(auto_now_add=True)
