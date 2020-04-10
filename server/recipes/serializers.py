@@ -1,5 +1,5 @@
 from rest_framework import serializers
-from .models import Recipe, Grade, Category
+from .models import Recipe, Grade, Category, Ingridient
 from django.contrib.auth.models import User
 
 
@@ -22,7 +22,6 @@ class DynamicFieldsModelSerializer(serializers.ModelSerializer):
             for field_name in disallowed:
                 if field_name in existing:
                     self.fields.pop(field_name)
-        
 
 
 class UserSerializer(DynamicFieldsModelSerializer):
@@ -32,6 +31,8 @@ class UserSerializer(DynamicFieldsModelSerializer):
 
 
 class GradeSerializer(DynamicFieldsModelSerializer):
+    owner = UserSerializer(read_only=True, fields=('id', 'username'))
+
     class Meta:
         model = Grade
         fields = '__all__'
@@ -43,8 +44,13 @@ class CategorySerializer(DynamicFieldsModelSerializer):
         fields = '__all__'
 
 
-class RecipeSerializer(serializers.ModelSerializer):
-    #TODO: single&list mode
+class IngridientSerializer(DynamicFieldsModelSerializer):
+    class Meta:
+        model = Ingridient
+        fields = '__all__'
+
+
+class ListRecipeSerializer(serializers.ModelSerializer):
     owner = UserSerializer(read_only=True, fields=('id', 'username'))
     grades = GradeSerializer(read_only=True, many=True, fields=('id', 'value'))
     categories = CategorySerializer(read_only=True, many=True, exclude=('description', 'poster'))
@@ -53,4 +59,15 @@ class RecipeSerializer(serializers.ModelSerializer):
         model = Recipe
         fields = ('id', 'owner', 'slug', 'description', 'cook_time',
                   'prep_time', 'grades', 'categories', 'dtcreate', 'views')
-        depth = 2
+
+
+class SingleRecipeSerializer(serializers.ModelSerializer):
+    owner = UserSerializer(read_only=True, fields=('id', 'username'))
+    grades = GradeSerializer(read_only=True, many=True, exclude=('recipe', ))
+    categories = CategorySerializer(read_only=True, many=True)
+    ingridients = IngridientSerializer(read_only=True, many=True)
+
+    class Meta:
+        model = Recipe
+        fields = ('id', 'owner', 'slug', 'description', 'ingridients', 'cook_time',
+                  'prep_time', 'grades', 'categories', 'views', 'dtcreate', 'dtupdate')

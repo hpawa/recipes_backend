@@ -2,7 +2,7 @@ from django.test import TestCase, Client
 from django.urls import reverse
 from ..models import Recipe, Category, Ingridient, Step
 from django.contrib.auth.models import User
-from ..serializers import RecipeSerializer
+from ..serializers import ListRecipeSerializer, SingleRecipeSerializer
 from rest_framework import status
 from model_bakery import baker
 import random
@@ -22,7 +22,7 @@ class RecipesList(TestCase):
         response = client.get(reverse('recipes:recipes_list'))
         recipes_list = Recipe.objects.all()
         self.assertEqual(response.status_code, status.HTTP_200_OK)
-        serializer = RecipeSerializer(recipes_list, many=True)
+        serializer = ListRecipeSerializer(recipes_list, many=True)
         self.assertEqual(response.data['results'], serializer.data)
 
 
@@ -40,7 +40,7 @@ class SingleRecipe(TestCase):
         recipe_pk = random.choice(self.recipes).pk
         response = client.get(reverse('recipes:single_recipe', kwargs={'pk': recipe_pk}))
         recipe = Recipe.objects.get(pk=recipe_pk)
-        serializer = RecipeSerializer(recipe)
+        serializer = SingleRecipeSerializer(recipe)
         self.assertEqual(response.status_code, status.HTTP_200_OK)
         self.assertEqual(response.data, serializer.data)
 
