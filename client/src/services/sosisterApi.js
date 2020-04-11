@@ -3,7 +3,7 @@ class SosisterApi {
     {
      id: 1,
      title: 'Рыба с руками',
-     image: 'https://static.1000.menu/img/content/17649/krasnaya-ryba-v-folge-v-duxovke_1479186670_0_max.jpg', 
+     image: 'https://russiaedu.ru/media/cache/image_md_resize/uploads/upload-images/2019/12/05/b_img5de908746e39d3.43406923.jpg', 
      category: 'Рыба', 
      score: 3, 
      description: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Incidunt magni qui cum? Veritatis consequuntur optio ea inventore aperiam velit maxime eveniet nobis magni non libero veniam dolorem sed nemo, illum enim unde amet exercitationem dicta. Ut hic obcaecati molestias, nostrum assumenda dignissimos facilis deleniti quis nulla, ratione cum labore vitae!', 
@@ -46,7 +46,7 @@ class SosisterApi {
     {
       id: 1,
       title: 'Рыба с руками',
-      image: 'https://static.1000.menu/img/content/17649/krasnaya-ryba-v-folge-v-duxovke_1479186670_0_max.jpg', 
+      image: 'https://russiaedu.ru/media/cache/image_md_resize/uploads/upload-images/2019/12/05/b_img5de908746e39d3.43406923.jpg', 
       category: 'Рыба', 
       owner: 'John Petrov', 
      },
@@ -60,7 +60,7 @@ class SosisterApi {
      {
       id: 3,
       title: 'Рыwfqwqfми',
-      image: 'https://static.1000.menu/img/content/17649/krasnaya-ryba-v-folge-v-duxovke_1479186670_0_max.jpg', 
+      image: 'https://russiaedu.ru/media/cache/image_md_resize/uploads/upload-images/2019/12/05/b_img5de908746e39d3.43406923.jpg', 
       category: 'Рыба', 
       owner: 'John Petrov', 
      },
@@ -78,7 +78,39 @@ class SosisterApi {
       category: 'Десерты', 
       owner: 'John Petrov', 
      },
-  ]
+  ];
+
+  detailRecipe = {
+    id: 1,
+    title: 'Рыба с руками',
+    images: [
+      'https://russiaedu.ru/media/cache/image_md_resize/uploads/upload-images/2019/12/05/b_img5de908746e39d3.43406923.jpg',
+      'https://cdn.lifehacker.ru/wp-content/uploads/2019/05/Depositphotos_68972477_xl-2015_1559126153-e1559129205144-630x315.jpg',
+      'https://ichef.bbci.co.uk/news/410/cpsprodpb/41F7/production/_105278861_gettyimages-855098134.jpg'
+    ],
+    category: 'Рыба', 
+    score: 3, 
+    description: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Incidunt magni qui cum? Veritatis consequuntur optio ea inventore aperiam velit maxime eveniet nobis magni non libero veniam dolorem sed nemo, illum enim unde amet exercitationem dicta. Ut hic obcaecati molestias, nostrum assumenda dignissimos facilis deleniti quis nulla, ratione cum labore vitae!', 
+    owner: 'John Petrov', 
+    likes: '23', 
+    cooktime: '21',
+    preptime: '12',
+    serving: '24',
+    views: '24125',
+    ingredients: [
+      {id: 100, name: '100 гр колбасы'},
+      {id: 101, name: '643 мл самогонки'},
+      {id: 102, name: '15 гр веры в бога'},
+      {id: 103, name: '1 кг оленя'},
+      {id: 104, name: 'грунтовая вода'},
+      {id: 105, name: '140 шт пачек от анчоусов'},
+    ],
+    steps: [
+      {id:10001, order:1, time: 5, description: 'Lorem ipsum dolor sit amet consectetur adipisicing elit.'},
+      {id:10002, order:2, time: 23, description: 'Lorem ipsum dolor sit amet '},
+      {id:10003, order:3, time: 17, description: 'Lorem ipsum dolor sit amet consectetur adipisicing elit.Lorem ipsum dolor sit amet consectetur adipisicing elit.Lorem ipsum dolor sit amet consectetur adipisicing elit.Lorem ipsum dolor sit amet consectetur adipisicing elit.'},
+    ]
+   }
 
   getTrendingRecipes = ()=> {
     return new Promise( (resolve) => {
@@ -96,6 +128,12 @@ class SosisterApi {
     return new Promise( (resolve) => {
       setTimeout( () => resolve(this.latestRecipes), 2201)
     });
+  }
+
+  getDetailRecipe = () => {
+    return new Promise( (resolve) => {
+      setTimeout( () => resolve(this.detailRecipe), 2134)
+    })
   }
 }
 

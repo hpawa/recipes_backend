@@ -1,36 +1,80 @@
-import React from 'react';
+import React, {useEffect} from 'react';
+import {bindActionCreators} from 'redux';
+import {connect} from 'react-redux';
 
+import SliderDetail from '../../../slider-detail';
 import StarScore from '../../../widgets/star-score';
 import RecipeMeta from '../../../widgets/recipe-meta';
 import RecipeAction from '../../../widgets/recipe-action';
 import RecipeFeature from '../../../widgets/recipe-feature';
 import RecipeIngredients from '../../../widgets/recipe-ingredients';
 import RecipeSteps from '../../../widgets/recipe-steps';
+import WithSosisterApi from '../../../hoc/WithSosisterApi';
+
+import Spinner from '../../../spinner';
+import ErrorIndicator from '../../../error-indicator';
+
+import {fetchDetailRecipe} from '../../../../actions'
 
 import './RecipeDetail.css';
 
-const RecipeDetail = () => {
+const RecipeDetail = ({data}) => {
+
+  const {title, images, category, score, description, owner, likes, preptime, cooktime, serving, views, ingredients, steps} = data;
+  
   return (
-    <div class="single-recipe-layout2">
-      <div class="ctg-name">PASTA</div>
-      <h2 class="item-title">Chanterelle and Porcini Mushroom Recipes</h2>
-      <div class="d-flex align-items-center justify-content-between flex-wrap mb-5">
-        <StarScore score={3}/>
-        <RecipeMeta owner="Petr LOL" likes={52} cooktime={50}/>
-        <RecipeAction/>
-      </div>
-      <RecipeFeature preptime={12} cooktime={24} serving={5} views={1245}/>
-      <p class="item-description">More off this less hello salamander lied porpoise much over tightly
-                        circa horse taped so innocuously side crudey mightily rigorous plot life. New homes in
-                        particular are subject.All recipes created with FoodiePress have suport for Micoformats and
-                        Google Recipe View. Schema.org is a collaboration byo improve the web by creatinegaera
-                        structured data markup.More off this less hello salamander lied porpoise much over tightly
-                        circa horse tapedey innocuously.
-      </p>
-      <RecipeIngredients/>
-      <RecipeSteps/>
-    </div>
+    <React.Fragment>
+      <SliderDetail images={images}/>
+      <section class="single-recipe-wrap-layout2 padding-bottom-80">
+        <div class="container">
+          <div class="single-recipe-layout2">
+            <div class="ctg-name">{category}</div>
+            <h2 class="item-title">{title}</h2>
+            <div class="d-flex align-items-center justify-content-between flex-wrap mb-5">
+              <StarScore score={score}/>
+              <RecipeMeta owner={owner} likes={likes} cooktime={cooktime}/>
+              <RecipeAction/>
+            </div>
+            <RecipeFeature preptime={preptime} cooktime={cooktime} serving={serving} views={views}/>
+            <p class="item-description">{description}</p>
+            <RecipeIngredients ingredients={ingredients}/>
+            <RecipeSteps steps={steps}/>
+          </div>
+        </div>
+      </section>
+    </React.Fragment>
   )
 }
 
-export default RecipeDetail
+const RecipeDetailContainer = ({recipeDetail: {data, isLoading, error}, fetchDetailRecipe}) => {
+
+  useEffect( () => {
+    fetchDetailRecipe()
+  }, [])
+
+  if (isLoading) {
+    return <Spinner/>
+  }
+
+  if (error)  {
+    return <ErrorIndicator/>
+  }
+
+  return <RecipeDetail data={data}/>
+}
+
+const mapStateToProps = (state) => {
+  return {
+    recipeDetail: state.detail
+  }
+}
+
+const mapDispatchToProps = (dispatch, ownProps) => {
+  const {sosisterApi} = ownProps;
+
+  return bindActionCreators({
+    fetchDetailRecipe: fetchDetailRecipe(sosisterApi)
+  }, dispatch)
+}
+
+export default WithSosisterApi(connect(mapStateToProps, mapDispatchToProps)(RecipeDetailContainer))
