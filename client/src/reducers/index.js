@@ -30,6 +30,11 @@ const initialState = {
     data: [],
     isLoading: false,
     error: null
+  },
+  recipes: {
+    data: [],
+    isLoading: false,
+    error: null
   }
 };
 
@@ -92,132 +97,159 @@ const reducer = (state = initialState, action) => {
           }
         }
       };
-      case 'FETCH_TOP_CATEGORIES_REQUEST':
+    case 'FETCH_TOP_CATEGORIES_REQUEST':
+      return {
+        ...state,
+        sidebar: {
+          ... state.sidebar,
+          topCategories:{
+            data: [],
+            isLoading: true,
+            error: null
+          }
+        }
+      };
+    case 'FETCH_TOP_CATEGORIES_SUCCESS':
+      return {
+        ...state,
+        sidebar: {
+          ... state.sidebar,
+          topCategories: {
+            data: action.payload,
+            isLoading: false,
+            error: null
+          }
+        }
+      };
+    case 'FETCH_LATEST_RECIPES_FAILURE':
+      return {
+        ...state,
+        sidebar: {
+          ... state.sidebar,
+          topCategories: {
+            data: [],
+            isLoading: false,
+            error: action.payload
+          }
+        }
+      };
+      case 'FETCH_LATEST_RECIPES_REQUEST':
         return {
           ...state,
           sidebar: {
             ... state.sidebar,
-            topCategories:{
+            latestRecipes:{
               data: [],
               isLoading: true,
               error: null
             }
           }
         };
-      case 'FETCH_TOP_CATEGORIES_SUCCESS':
+      case 'FETCH_LATEST_RECIPES_SUCCESS':
         return {
           ...state,
           sidebar: {
             ... state.sidebar,
-            topCategories: {
+            latestRecipes: {
               data: action.payload,
               isLoading: false,
               error: null
             }
           }
         };
-      case 'FETCH_LATEST_RECIPES_FAILURE':
+      case 'FETCH_TOP_CATEGORIES_FAILURE':
         return {
           ...state,
           sidebar: {
             ... state.sidebar,
-            topCategories: {
+            latestRecipes: {
               data: [],
               isLoading: false,
               error: action.payload
             }
           }
         };
-        case 'FETCH_LATEST_RECIPES_REQUEST':
-          return {
-            ...state,
-            sidebar: {
-              ... state.sidebar,
-              latestRecipes:{
-                data: [],
-                isLoading: true,
-                error: null
-              }
-            }
-          };
-        case 'FETCH_LATEST_RECIPES_SUCCESS':
-          return {
-            ...state,
-            sidebar: {
-              ... state.sidebar,
-              latestRecipes: {
-                data: action.payload,
-                isLoading: false,
-                error: null
-              }
-            }
-          };
-        case 'FETCH_TOP_CATEGORIES_FAILURE':
-          return {
-            ...state,
-            sidebar: {
-              ... state.sidebar,
-              latestRecipes: {
-                data: [],
-                isLoading: false,
-                error: action.payload
-              }
-            }
-          };
-        case 'FETCH_DETAIL_RECIPE_REQUEST':
-          return {
-            ...state,
-            detail: {
-              data: [],
-              isLoading: true,
-              error: null
-            }
-          };
-        case 'FETCH_DETAIL_RECIPE_SUCCESS':
-          return {
-            ...state,
-            detail: {
-              data: action.payload,
-              isLoading: false,
-              error: null
-            }
-          };
-        case 'FETCH_DETAIL_RECIPE_FAILURE':
-          return {
-            ...state,
-            detail: {
-              data: [],
-              isLoading: false,
-              error: action.payload
-            }
-          };
-          case 'FETCH_CATEGORIES_REQUEST':
-            return {
-              ...state,
-              categories: {
-                data: [],
-                isLoading: true,
-                error: null
-              }
-            };
-          case 'FETCH_CATEGORIES_SUCCESS':
-            return {
-              ...state,
-              categories: {
-                data: action.payload,
-                isLoading: false,
-                error: null
-              }
-            };
-          case 'FETCH_CATEGORIES_FAILURE':
-            return {
-              ...state,
-              categories: {
-                data: [],
-                isLoading: false,
-                error: action.payload
-              }
-            };
+      case 'FETCH_DETAIL_RECIPE_REQUEST':
+        return {
+          ...state,
+          detail: {
+            data: [],
+            isLoading: true,
+            error: null
+          }
+        };
+      case 'FETCH_DETAIL_RECIPE_SUCCESS':
+        return {
+          ...state,
+          detail: {
+            data: action.payload,
+            isLoading: false,
+            error: null
+          }
+        };
+      case 'FETCH_DETAIL_RECIPE_FAILURE':
+        return {
+          ...state,
+          detail: {
+            data: [],
+            isLoading: false,
+            error: action.payload
+          }
+        };
+      case 'FETCH_CATEGORIES_REQUEST':
+        return {
+          ...state,
+          categories: {
+            data: [],
+            isLoading: true,
+            error: null
+          }
+        };
+      case 'FETCH_CATEGORIES_SUCCESS':
+        return {
+          ...state,
+          categories: {
+            data: action.payload,
+            isLoading: false,
+            error: null
+          }
+        };
+      case 'FETCH_CATEGORIES_FAILURE':
+        return {
+          ...state,
+          categories: {
+            data: [],
+            isLoading: false,
+            error: action.payload
+          }
+        };
+      case 'FETCH_RECIPES_REQUEST':
+        return {
+          ...state,
+          recipes: {
+            data: [],
+            isLoading: true,
+            error: null
+          }
+        };
+      case 'FETCH_RECIPES_SUCCESS':
+        return {
+          ...state,
+          recipes: {
+            data: action.payload,
+            isLoading: false,
+            error: null
+          }
+        };
+      case 'FETCH_RECIPES_FAILURE':
+        return {
+          ...state,
+          recipes: {
+            data: [],
+            isLoading: false,
+            error: action.payload
+          }
+        };
     default:
       return state
   }

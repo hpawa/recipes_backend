@@ -119,6 +119,42 @@ class SosisterApi {
     {id: 4, title: 'Петр', recipeNums: 24372, image: 'https://www.2m5.ru/images/2019/08/11/wfPI.jpg'},
   ]
 
+  recipesData = [
+    {
+     id: 1,
+     title: 'Рыба с руками',
+     image: 'https://www.2m5.ru/images/2019/08/11/wfPI.jpg', 
+     category: 'Рыба', 
+     score: 3, 
+     description: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Incidunt magni qui cum? Veritatis consequuntur optio ea inventore aperiam velit maxime eveniet nobis magni non libero veniam dolorem sed nemo, illum enim unde amet exercitationem dicta. Ut hic obcaecati molestias, nostrum assumenda dignissimos facilis deleniti quis nulla, ratione cum labore vitae!', 
+     owner: 'John Petrov', 
+     likes: '23', 
+     cooktime: '21'
+    },
+    {
+      id: 2,
+      title: 'Гусь с ногами',
+      image: 'https://www.obed.ru/images/suppliers/restaurants/food/666_big.1537351715.jpg', 
+      category: 'Мясо', 
+      score: 4, 
+      description: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Incidunt magni qui cum? Veritatis consequuntur optio ea inventore aperiam velit maxime eveniet nobis magni non libero veniam dolorem sed nemo, illum enim unde amet exercitationem dicta. Ut hic obcaecati molestias, nostrum assumenda dignissimos facilis deleniti quis nulla, ratione cum labore vitae!', 
+      owner: 'John Petrov', 
+      likes: '3', 
+      cooktime: '121'
+     },
+     {
+      id: 3,
+      title: 'Мороженое',
+      image: 'https://cdn.iz.ru/sites/default/files/styles/1920x1080/public/article-2019-11/Depositphotos_11002885_xl-2015.jpg?itok=R2_SQjfd', 
+      category: 'Десерты', 
+      score: 5, 
+      description: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Incidunt magni qui cum? Veritatis consequuntur optio ea inventore aperiam velit maxime eveniet nobis magni non libero veniam dolorem sed nemo, illum enim unde amet exercitationem dicta. Ut hic obcaecati molestias, nostrum assumenda dignissimos facilis deleniti quis nulla, ratione cum labore vitae!', 
+      owner: 'John Petrov', 
+      likes: '123', 
+      cooktime: '15'
+     },
+  ];
+
   getTrendingRecipes = ()=> {
     return new Promise( (resolve) => {
       setTimeout( () => resolve(this.trendingRecipesData), 200)
@@ -146,6 +182,12 @@ class SosisterApi {
   getCategories = () => {
     return new Promise ( (resolve) => {
       setTimeout( () => resolve(this.categories), 1000)
+    })
+  }
+
+  getRecipes = () => {
+    return new Promise ( (resolve) => {
+      setTimeout( () => resolve(this.recipesData), 500)
     })
   }
 }
