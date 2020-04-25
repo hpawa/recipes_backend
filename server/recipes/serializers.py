@@ -1,5 +1,5 @@
 from rest_framework import serializers
-from .models import Recipe, Grade, Category, Ingridient
+from .models import Recipe, Grade, Category, Ingridient, Step
 from django.contrib.auth.models import User
 
 
@@ -50,10 +50,17 @@ class IngridientSerializer(DynamicFieldsModelSerializer):
         fields = '__all__'
 
 
+class StepSerializer(DynamicFieldsModelSerializer):
+    class Meta:
+        model = Step
+        fields = '__all__'
+
+
 class ListRecipeSerializer(serializers.ModelSerializer):
     owner = UserSerializer(read_only=True, fields=('id', 'username'))
     grades = GradeSerializer(read_only=True, many=True, fields=('id', 'value'))
-    categories = CategorySerializer(read_only=True, many=True, exclude=('description', 'poster'))
+    categories = CategorySerializer(
+        read_only=True, many=True, exclude=('description', 'poster'))
 
     class Meta:
         model = Recipe
@@ -66,8 +73,9 @@ class SingleRecipeSerializer(serializers.ModelSerializer):
     grades = GradeSerializer(read_only=True, many=True, exclude=('recipe', ))
     categories = CategorySerializer(read_only=True, many=True)
     ingridients = IngridientSerializer(read_only=True, many=True)
+    steps = StepSerializer(read_only=True, many=True, exclude=('recipe', ))
 
     class Meta:
         model = Recipe
         fields = ('id', 'owner', 'slug', 'description', 'ingridients', 'cook_time',
-                  'prep_time', 'grades', 'categories', 'views', 'dtcreate', 'dtupdate')
+                  'steps', 'prep_time', 'grades', 'categories', 'views', 'dtcreate', 'dtupdate')
