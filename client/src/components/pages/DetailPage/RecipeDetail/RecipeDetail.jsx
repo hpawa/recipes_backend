@@ -65,7 +65,7 @@ const RecipeDetailContainer = ({recipeDetail: {data, isLoading, error}, fetchDet
 
 const mapStateToProps = (state) => {
   return {
-    recipeDetail: state.detail
+    recipeDetail: state.detailPage.detail
   }
 }
 

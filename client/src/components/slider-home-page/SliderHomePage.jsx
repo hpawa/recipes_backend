@@ -40,7 +40,7 @@ const SliderHomePageContainer = ({slider:{data, isLoading, error}, fetchSliderIt
 
 const mapStateToProps = (state) => {
   return {
-    slider: state.slider
+    slider: state.homePage.slider
   }
 }
 

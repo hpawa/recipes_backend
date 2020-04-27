@@ -50,7 +50,7 @@ const TrendingRecipesContainer = ({trendingRecipes: {data, isLoading, error}, fe
 
 const mapStateToProps = (state) => {
   return {
-    trendingRecipes: state.trendingRecipes
+    trendingRecipes: state.homePage.trendingRecipes
   }
 }
 

@@ -50,7 +50,7 @@ const RecipesContainer = ({recipes: {data, isLoading, error}, fetchRecipes}) => 
 
 const mapStateToProps = (state) => {
   return {
-    recipes: state.recipes
+    recipes: state.recipePage.recipes
   }
 }
 

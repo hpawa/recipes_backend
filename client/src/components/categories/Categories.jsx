@@ -44,7 +44,7 @@ const CategoriesContainer = ({categories: {data, isLoading, error}, fetchCategor
 
 const mapStateToProps = (state) => {
   return {
-    categories: state.categories
+    categories: state.categoryPage.categories
   }
 }
 
