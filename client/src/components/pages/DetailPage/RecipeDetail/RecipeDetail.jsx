@@ -14,7 +14,7 @@ import WithSosisterApi from '../../../hoc/WithSosisterApi';
 import Spinner from '../../../spinner';
 import ErrorIndicator from '../../../error-indicator';
 
-import {fetchDetailRecipe} from '../../../../actions'
+import fetchDetailRecipe from '../../../../actions/detailRecipe'
 
 import './RecipeDetail.css';
 

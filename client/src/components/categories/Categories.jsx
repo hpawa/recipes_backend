@@ -4,7 +4,7 @@ import {connect} from 'react-redux';
 
 import CategoryItem from '../category-item';
 import WithSosisterApi from '../hoc/WithSosisterApi';
-import {fetchCategories} from '../../actions';
+import fetchCategories from '../../actions/categories';
 import Spinner from '../spinner';
 import ErrorIndicator from '../error-indicator';
 

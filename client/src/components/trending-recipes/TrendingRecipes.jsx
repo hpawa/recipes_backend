@@ -7,7 +7,7 @@ import WithSositerApi from './../hoc/WithSosisterApi';
 import Spinner from '../spinner';
 import ErrorIndicator from '../error-indicator';
 
-import {fetchTrendingRecipes} from '../../actions'
+import fetchTrendingRecipes from '../../actions/trendingRecipes'
 
 import './TrendingRecipes.css';
 
