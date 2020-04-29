@@ -53,7 +53,7 @@ class ListRecipeSerializer(serializers.ModelSerializer):
     class Meta:
         model = Recipe
         fields = ('id', 'title', 'owner', 'slug', 'description', 'cook_time',
-                  'prep_time', 'grades', 'categories', 'dtcreate', 'views')
+                  'prep_time', 'spent_time', 'grades', 'categories', 'dtcreate', 'views')
 
 
 class SingleRecipeSerializer(serializers.ModelSerializer):
@@ -66,5 +66,5 @@ class SingleRecipeSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Recipe
-        fields = ('id', 'title', 'owner', 'slug', 'description', 'ingridients', 'cook_time',
-                  'poster', 'steps', 'prep_time', 'grades', 'categories', 'views', 'dtcreate', 'dtupdate')
+        fields = ('id', 'title', 'owner', 'slug', 'description', 'ingridients', 'cook_time', 'prep_time',
+                  'spent_time', 'poster', 'steps', 'grades', 'categories', 'views', 'dtcreate', 'dtupdate')

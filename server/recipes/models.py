@@ -21,12 +21,15 @@ class Recipe(models.Model):
     dtcreate = models.DateTimeField(auto_now_add=True)
     dtupdate = models.DateTimeField(auto_now=True)
     published = models.BooleanField(default=True)
+    spent_time = models.PositiveIntegerField(blank=True, null=True, editable=False)
 
     class Meta:
         ordering = ['-dtcreate']
         get_latest_by = 'dtcreate'
 
     def save(self, *args, **kwargs):
+        if not self.spent_time:
+            self.spent_time = self.prep_time + self.cook_time
         if not self.slug:
             self.slug = get_unique_slug(self, 'title', 'slug')
         super(Recipe, self).save(*args, **kwargs)
