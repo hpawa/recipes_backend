@@ -13,8 +13,7 @@ class Recipe(models.Model):
     categories = models.ManyToManyField(Category)
     description = models.TextField()
     ingridients = models.ManyToManyField(Ingridient)
-    poster = models.ImageField(
-        upload_to='recipes/static/img/posters', blank=True, null=True)
+    poster = models.TextField(blank=True, null=True)
     prep_time = models.PositiveSmallIntegerField()
     cook_time = models.PositiveSmallIntegerField()
     views = models.PositiveIntegerField(default=0)
@@ -40,7 +39,7 @@ class Recipe(models.Model):
 
 class Step(models.Model):
     title = models.CharField(max_length=200)
-    image = models.ImageField(upload_to='recipes/static/img/steps')
+    image = models.TextField(blank=True, null=True)
     description = models.TextField(blank=True)
     recipe = models.ForeignKey(
         Recipe, on_delete=models.CASCADE, related_name='steps')
@@ -50,8 +49,7 @@ class Grade(models.Model):
     owner = models.ForeignKey(
         User, on_delete=models.PROTECT, blank=True, null=True)
     description = models.TextField(blank=True, null=True)
-    image = models.ImageField(
-        upload_to='recipes/static/img/grades', blank=True, null=True)
+    image = models.TextField(blank=True, null=True)
     value = models.PositiveSmallIntegerField(
         validators=[MaxValueValidator(10)])
     recipe = models.ForeignKey(
