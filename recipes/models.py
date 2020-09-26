@@ -38,9 +38,9 @@ class Recipe(models.Model):
 
 
 class Step(models.Model):
-    title = models.CharField(max_length=200)
+    title = models.TextField()
     image = models.TextField(blank=True, null=True)
-    description = models.TextField(blank=True)
+    description = models.TextField(blank=True, null=True)
     recipe = models.ForeignKey(
         Recipe, on_delete=models.CASCADE, related_name='steps')
 
